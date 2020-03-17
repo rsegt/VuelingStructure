@@ -5,7 +5,7 @@ using Vueling.Infrastructure.Repositories.Implementations;
 
 namespace Vueling.Application.Logic.AutofacModules
 {
-    public class LogicModule : Autofac.Module
+    public class ApplicationModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {

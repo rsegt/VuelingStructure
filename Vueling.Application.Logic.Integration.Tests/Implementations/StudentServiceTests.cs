@@ -1,10 +1,19 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Vueling.Application.Logic.AutofacModules;
+using Vueling.Test.Framework;
 
 namespace Vueling.Application.Logic.Implementations.Unit.Tests
 {
     [TestClass()]
-    public class StudentServiceTests
+    public class StudentServiceTests : IoCSupportedTest<ApplicationModule>
     {
+
+        [ClassInitialize]
+        public static void ClassInitialize(TestContext context)
+        {
+            log4net.Config.XmlConfigurator.Configure();
+        }
+
         [TestMethod()]
         public void CreateTest()
         {

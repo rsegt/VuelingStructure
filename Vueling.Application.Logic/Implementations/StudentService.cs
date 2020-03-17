@@ -1,4 +1,5 @@
 ﻿
+using log4net;
 using System.Collections.Generic;
 using Vueling.Application.Logic.Contracts;
 using Vueling.Domain.Entities;
@@ -9,10 +10,17 @@ namespace Vueling.Application.Logic.Implementations
     public class StudentService : IService<Student>
     {
         readonly IRepository<Student> repository = null;
+        readonly ILog logger = null;
 
-        public StudentService(IRepository<Student> repository)
+        public StudentService()
+        {
+
+        }
+
+        public StudentService(IRepository<Student> repository, ILog logger)
         {
             this.repository = repository;
+            this.logger = logger;
         }
 
         public Student Create(Student model)

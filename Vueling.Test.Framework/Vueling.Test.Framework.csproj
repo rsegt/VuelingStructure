@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7F8DB879-C94C-4406-9832-91C2817901F7}</ProjectGuid>
+    <ProjectGuid>{D5C92E2E-54C4-455A-B6FE-BEF6C68A14D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vueling.Application.Logic</RootNamespace>
-    <AssemblyName>Vueling.Application.Logic</AssemblyName>
+    <RootNamespace>Vueling.Test.Framework</RootNamespace>
+    <AssemblyName>Vueling.Test.Framework</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -57,24 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutofacModules\ApplicationModule.cs" />
-    <Compile Include="Contracts\ICreate.cs" />
-    <Compile Include="Contracts\IDelete.cs" />
-    <Compile Include="Contracts\IGet.cs" />
-    <Compile Include="Contracts\IService.cs" />
-    <Compile Include="Contracts\IUpdate.cs" />
-    <Compile Include="Implementations\StudentService.cs" />
+    <Compile Include="IoCSupportedTest.cs" />
+    <Compile Include="LoggingModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Vueling.Domain.Entities\Vueling.Domain.Entities.csproj">
-      <Project>{6225ab0b-2d8d-4ab6-ac0e-40d90ef9c91c}</Project>
-      <Name>Vueling.Domain.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Vueling.Infrastructure.Repositories\Vueling.Infrastructure.Repository.csproj">
-      <Project>{a43a7338-a056-42ee-aec7-6b2c2a7fe2ac}</Project>
-      <Name>Vueling.Infrastructure.Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

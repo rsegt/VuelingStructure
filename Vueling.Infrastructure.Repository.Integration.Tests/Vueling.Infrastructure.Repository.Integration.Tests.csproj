@@ -42,6 +42,9 @@
     <Reference Include="Autofac, Version=5.1.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.5.1.2\lib\net461\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -69,16 +72,26 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AutofacModules\RepositoryModule.cs" />
     <Compile Include="Implementations\StudentRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="log4net.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vueling.Domain.Entities\Vueling.Domain.Entities.csproj">
+      <Project>{6225ab0b-2d8d-4ab6-ac0e-40d90ef9c91c}</Project>
+      <Name>Vueling.Domain.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vueling.Infrastructure.Repositories\Vueling.Infrastructure.Repository.csproj">
       <Project>{A43A7338-A056-42EE-AEC7-6B2C2A7FE2AC}</Project>
       <Name>Vueling.Infrastructure.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vueling.Test.Framework\Vueling.Test.Framework.csproj">
+      <Project>{d5c92e2e-54c4-455a-b6fe-bef6c68a14d8}</Project>
+      <Name>Vueling.Test.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

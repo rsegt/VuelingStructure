@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -10,26 +11,36 @@ namespace Vueling.Infrastructure.Repositories.Implementations
 {
     public class StudentRepository : IRepository<Student>
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private readonly ILog logger = null;
+        public StudentRepository()
+        {
+
+        }
+
+        public StudentRepository(ILog logger)
+        {
+            this.logger = logger;
+        }
+
         public Student Create(Student model)
         {
             using (var connection = new SqlConnection(Resources.connectionString))
             {
+                if(model == null)
+                {
+                    throw new ArgumentNullException(nameof(model));
+                }
                 try
                 {
-                    var id = SqlMapper.Query<int>(connection, "INSERT INTO Student VALUES (@Name, @Lastname, @Birthday);SELECT CAST(SCOPE_IDENTITY() AS INT);",
-                        new { @Name = model.Name, @Lastname = model.Lastname, @Birthday = model.BirthDate }).Single();
+                    var id = SqlMapper.Query<int>(connection, "INSERT INTO Student VALUES (@Name, @Lastname, @Birthday, @Guid);SELECT CAST(SCOPE_IDENTITY() AS INT);",
+                        new { model.Name, model.Lastname, @Birthday = model.BirthDate, model.Guid }).Single();
 
                     return SqlMapper.Query<Student>(connection, "SELECT * FROM Student WHERE Id = @Id", new { @Id = id }).Single();
                 }
                 catch (InvalidOperationException e)
                 {
-                    log.Error(e);
-                    throw;
-                }
-                catch (ArgumentNullException e)
-                {
-                    log.Error(e);
+                    logger.Error(e.Message, e);
                     throw;
                 }
             }
@@ -49,13 +60,14 @@ namespace Vueling.Infrastructure.Repositories.Implementations
         {
             using (var connection = new SqlConnection(Resources.connectionString))
             {
+                logger.Info("GetAll method started");
                 try
                 {
                     return SqlMapper.Query<Student>(connection, "SELECT * FROM Student").ToList();
                 }
                 catch (ArgumentNullException ex)
                 {
-                    log.Error(ex);
+                    logger.Error(ex.Message, ex);
                     throw;
                 }
             }
@@ -63,25 +75,28 @@ namespace Vueling.Infrastructure.Repositories.Implementations
 
         public Student Update(Student model)
         {
+            if(model == null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
             using (var connection = new SqlConnection(Resources.connectionString))
             {
-
                 connection.Query<Student>("UPDATE Student SET Name = @Name, Lastname = @Lastname, Birthday = @BirthDate WHERE Id = @Id;",
-                        new { @Name = model.Name, @Lastname = model.Lastname, @BirthDate = model.BirthDate, @Id = model.Id });
+                        new { model.Name, model.Lastname, model.BirthDate, model.Id });
                 try
                 {
-                    var updatedStudent = SqlMapper.Query<Student>(connection, "SELECT * FROM Student WHERE Id = @Id", new { @Id = model.Id }).Single();
+                    var updatedStudent = SqlMapper.Query<Student>(connection, "SELECT * FROM Student WHERE Id = @Id", new { model.Id }).Single();
 
                     return updatedStudent;
                 }
                 catch (ArgumentNullException e)
                 {
-                    log.Error(e);
+                    logger.Error(e.Message, e);
                     throw;
                 }
                 catch (InvalidOperationException e)
                 {
-                    log.Error(e);
+                    logger.Error(e.Message, e);
                     throw;
                 }
             }

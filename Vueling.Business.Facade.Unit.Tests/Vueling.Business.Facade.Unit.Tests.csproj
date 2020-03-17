@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FBF34C44-081D-4CA6-8F6E-E3BF5E2BB539}</ProjectGuid>
+    <ProjectGuid>{6408C51B-CE2B-4707-BB0B-F51169856094}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vueling.Application.Logic.Unit.Tests</RootNamespace>
-    <AssemblyName>Vueling.Application.Logic.Unit.Tests</AssemblyName>
+    <RootNamespace>Vueling.Business.Facade.Unit.Tests</RootNamespace>
+    <AssemblyName>Vueling.Business.Facade.Unit.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -47,9 +47,6 @@
     </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -96,24 +93,22 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Implementations\StudentServiceTests.cs" />
+    <Compile Include="Controllers\StudentControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="log4net.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Vueling.Application.Logic\Vueling.Application.Logic.csproj">
-      <Project>{7F8DB879-C94C-4406-9832-91C2817901F7}</Project>
-      <Name>Vueling.Application.Logic</Name>
+    <ProjectReference Include="..\Vueling.Business.Facade\Vueling.Business.Facade.csproj">
+      <Project>{11FABB5D-EA90-4018-9726-DB5077F9362D}</Project>
+      <Name>Vueling.Business.Facade</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vueling.Domain.Entities\Vueling.Domain.Entities.csproj">
-      <Project>{6225AB0B-2D8D-4AB6-AC0E-40D90EF9C91C}</Project>
+      <Project>{6225ab0b-2d8d-4ab6-ac0e-40d90ef9c91c}</Project>
       <Name>Vueling.Domain.Entities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

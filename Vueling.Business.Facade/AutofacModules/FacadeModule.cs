@@ -17,7 +17,8 @@ namespace Vueling.Business.Facade.AutofacModules
 
             builder.RegisterType<StudentService>().As<IService<Student>>();
 
-            builder.RegisterModule(new LogicModule());
+            builder.RegisterModule(new LoggingModule());
+            builder.RegisterModule(new ApplicationModule());
 
             base.Load(builder);
         }
